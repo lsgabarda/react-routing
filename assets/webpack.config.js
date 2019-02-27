@@ -10,13 +10,23 @@ module.exports = (env, options) => ({
     minimizer: [
       new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
       new OptimizeCSSAssetsPlugin({})
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        }
+      }
+    }
   },
   entry: {
-      './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
+    bundle: './js/app.js',
+    vendor: ['react', 'react-dom', 'react-router-dom'].concat(glob.sync('./vendor/**/*.js')),
   },
   output: {
-    filename: 'app.js',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, '../priv/static/js')
   },
   module: {
@@ -37,5 +47,5 @@ module.exports = (env, options) => ({
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
     new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
-  ]
+  ],
 });

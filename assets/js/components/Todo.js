@@ -6,7 +6,7 @@ function Todo() {
     const [items, setItems] = useState([
     ])
 
-    function addTodo(text) {
+    const addTodo = (text) => {
         const newTodos = [...items, { text }];
         setItems(newTodos);
     }
@@ -32,7 +32,6 @@ function Todo() {
         </div>
     )
 }
-
 
 function TodoList({ item, index, removeTodo }) {
     return (

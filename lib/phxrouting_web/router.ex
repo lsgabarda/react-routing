@@ -19,18 +19,21 @@ defmodule PhxroutingWeb.Router do
     get "/", PageController, :index
 
 
-    get "/about", PageController, :about
+    get "/about/", PageController, :index
 
-    get "/project", PageController, :project
-   
+    get "/project/", PageController, :index
+    get "/project/todo", PageController, :index   
+    get "/project/calculator", PageController, :index   
+    #get "/project/calculator",  Redirect ,(to: "/project")
 
-    get "/sample", PageController, :sample
-   
+    get "/sample", PageController, :index
+  
     
+  
     
-    get "/project/todo", PageController, :project
+    #get "/project/todo", PageController, :index
    
-    get "/project/calculator", PageController, :project
+    # get "/project/calculator", PageController, :project
     
     
   end
@@ -40,3 +43,29 @@ defmodule PhxroutingWeb.Router do
   #   pipe_through :api
   # end
 end
+
+####################################
+
+# defmodule MyApp.SlugRouter do
+#   import Plug.Conn
+
+#   def init(opts), do: opts
+
+#   def call(%Plug.Conn{params: %{"id" => id}} = conn, action) do
+#     cond do
+#       Regex.match?(~r/^\d{5}$/, id) ->
+#         SomeController.call(conn, SomeController.init(action))
+#       true -> conn
+#     end
+#   end
+# end
+
+# defmodule Booking do
+#   use PhxroutingWeb, :controller
+  
+#   def index(conn, _params) do
+#     Regex.match?(~r/^boo$/, id) ->
+#       render(conn, "index.html")
+#   end
+
+# end
